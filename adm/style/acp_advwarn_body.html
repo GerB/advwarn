@@ -1,0 +1,49 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_ACP_WARN_REASONS}</h1>
+{L_ACP_WARN_REASONS_EXPLAIN}
+<!-- IF S_ERROR -->
+<div class="errorbox">
+    <h3>{L_WARNING}</h3>
+    <p>{ERROR_MSG}</p>
+</div>
+<!-- ENDIF -->
+<form id="add_reason" method="post" action="{U_ADD_ACTION}">
+    <fieldset>
+	{L_CREATE_REASON}{L_COLON} <input type="text" name="add_reason" value="" /> <input class="button1" type="submit" name="submit" value="{L_SUBMIT}" />
+	<input type="hidden" name="add" value="1" />
+	{S_FORM_TOKEN}
+    </fieldset>
+</form>
+
+<form id="warn_reasons" method="post" action="{U_ACTION}">
+    <!-- IF warn_reasons -->
+	<!-- BEGIN warn_reasons -->
+	    <fieldset id="reason{warn_reasons.REASON_ID}">
+		<dl>
+		    <dt><label for="{warn_reasons.REASON_ID}_reason_short">{L_WARN_REASON}{L_COLON}</label><span class="toggle_pm_text_container" data-target="#{warn_reasons.REASON_ID}_reason_pm_text_container">[{L_ACP_WARN_REASON_EXPAND}]</span></dt>
+		    <dd>
+			<input type="text" id="{warn_reasons.REASON_ID}_reason_short" name="{warn_reasons.REASON_ID}_reason_short" value="{warn_reasons.REASON_SHORT}" style="width: 90%"/>
+			<a class="reason_delete" href="{warn_reasons.U_REASON_DELETE}">{ICON_DELETE}</a>
+		    </dd>
+		</dl>
+		<dl class="pm_text_container" id="{warn_reasons.REASON_ID}_reason_pm_text_container">
+		    <dd>
+			<textarea id="{warn_reasons.REASON_ID}_reason_pm_text" name="{warn_reasons.REASON_ID}_reason_pm_text" rows="20" cols="70">{warn_reasons.REASON_PM_TEXT}</textarea>
+		    </dd>
+		</dl>
+	    </fieldset>
+	<!-- END warn_reasons -->
+	<p class="submit-buttons">
+	    <input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+	    <input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+	{S_FORM_TOKEN}
+
+    <!-- ELSE -->
+    <fieldset>
+	{L_NO_REAONS}
+    </fieldset>
+    <!-- ENDIF -->
+</form>
+<!-- INCLUDE overall_footer.html -->

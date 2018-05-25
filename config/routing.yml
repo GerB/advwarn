@@ -1,0 +1,3 @@
+ger_advwarn_view:
+    path: /modbericht/{confirm}
+    defaults: { _controller: ger.advwarn.view:handle, confirm: "0" }

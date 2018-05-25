@@ -1,0 +1,33 @@
+<!-- IF default_warnings -->
+<script>
+(function($) {
+        // We alway notify
+        $('[name="notify_user"]').parents('dl.panel').hide();
+    
+    	// Build selectbox the easy way
+        var selectbox = '<fieldset><dl><dt style="width: 9%"><label>Reden</label></dt>';
+	selectbox += '<dd style="margin-left: 10%"><select id="opt_reason" name="opt_reason"><option value="-1">Selecteer</option><!-- BEGIN default_warnings --><option value="{default_warnings.reason_id}">{default_warnings.reason_short}</option><!-- END default_warnings --></select></dd>';
+	selectbox += '</dl></fieldset>';
+	$("#warning").before(selectbox);
+	
+	var reasons = {
+			<!-- BEGIN default_warnings -->
+			"{default_warnings.reason_id}" : "{default_warnings.reason_pm_text}",
+			<!-- END default_warnings -->
+		};
+	
+	$("#opt_reason").change(function() {
+		var selected = $(this).val();
+		if (selected > 0) {
+		    var warn_text = reasons[selected];
+		    var post_text = $('#raw_post_text').text();	
+		    $("#warning").val(reasons[selected].replace(/___post_text___/gi, post_text));
+		} else {
+		    $("#warning").val("");
+		}
+	});
+        
+})(jQuery); // Avoid conflicts with other libraries
+</script>
+<div style="display:none" id="raw_post_text">{RAW_POST_TEXT}</div>    
+<!-- ENDIF -->

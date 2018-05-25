@@ -1,0 +1,37 @@
+<!-- IF warn_reasons -->
+<style>
+#warn_reasons fieldset dt {
+    width: 25%;
+}
+#warn_reasons fieldset dd {
+    margin-left: 25%;
+}
+.toggle_pm_text_container {
+    cursor: pointer;
+}
+.pm_text_container {
+    display: none;
+}
+a.reason_delete {
+    position: relative;
+    top: 5px;
+    left: 4%;
+}
+strong.tabbed {
+    display: inline-block;
+    width: 15%;
+    min-width: 150px;
+}
+</style>
+<script>
+(function($) {
+	$(".toggle_pm_text_container").click(function() {
+	    $($(this).data("target")).slideToggle();
+	});
+	$(".reason_delete").click(function() {
+	    return confirm("{LA_DELETE_REASON_CONFIRM}");
+	});
+})(jQuery); // Avoid conflicts with other libraries
+
+</script>
+<!-- ENDIF -->

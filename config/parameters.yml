@@ -1,0 +1,2 @@
+parameters:
+    ger.advwarn.tables.warn_reasons: '%core.table_prefix%warn_reasons'

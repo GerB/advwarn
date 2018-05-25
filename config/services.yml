@@ -1,0 +1,24 @@
+imports:
+    - { resource: parameters.yml }
+    
+services:
+    ger.advwarn.view:
+        class: ger\advwarn\controller\view
+        arguments:
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            
+    ger.advwarn.listener:
+        class: ger\advwarn\event\main_listener
+        arguments: 
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '%ger.advwarn.tables.warn_reasons%'
+        tags:
+            - { name: event.listener }
